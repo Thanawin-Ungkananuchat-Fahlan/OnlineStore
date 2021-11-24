@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body id="hello-vue" style="margin: 1em;">
+    <nav class="navbar navbar-expand-lg navbar-light py-3" style="background-color: #e3f2fd; font-size:x-large; padding-right: 10pt; padding-left: 10pt;">
+        <img src="https://cdn-icons-png.flaticon.com/512/1625/1625048.png" style="height: 40px;" class="rounded" >
+        <a style="font-weight:bolder;" href="#">SmileFruit</a>    
+        <div class="container-fluid" >
+            <a class="nav-link active" href="#" v-on:click="ShowHomePage">Home</a>
+            <a class="nav-link" href="#">Promotions</a>
+            <a class="nav-link" href="#" v-on:click="ShowMyCart" >My Cart ({{itemCount}})</a>
+            <a></a>
+        </div>
+        <input class="form-control mx-5" type="search" placeholder="Search">
+        <button class="btn btn-outline-success">Search</button>
+    </nav>
+    <div style="font-family: sans-serif; border: 1px solid #eee; border-radius: 2px; padding: 20px 30px; margin-top: 1em; margin-bottom: 40px; user-select: none; overflow-x: auto;">
+        <input type="text" v-model="title" />
+        <button @click="addProduct">Add</button>
+        <br/> Number of product : {{itemCount}}
+        <ul>
+            <li v-for="item in product">{{item}}</li>
+        </ul>
+    </div>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        const HelloVueApp = {
+            data() {
+                return {
+                    title: '',
+                    product: []
+                }
+            },
+            computed: {
+                itemCount: function() {
+                    return this.product.length
+                }
+            },
+            methods: {
+                addProduct: function (){
+                    this.product.push(this.title)
+                }
+            }
+        }
+
+        Vue.createApp(HelloVueApp).mount('#hello-vue')
+
+    </script>
+</body>
+
+</html>
